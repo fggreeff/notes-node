@@ -1,23 +1,12 @@
-console.log('starting app...')
+console.log('starting app.js...')
 
 const fs = require('fs')
-const os = require('os')
+const _ = require('lodash')
+
 const notes = require('./notes.js')
 
-var user = os.userInfo()
+var res = notes.addNote(`lovely note`)
+console.log(_.isString(res))
 
-var res = notes.addNote(`${user.username} lovely note`)
-console.log(res)
-
-/* -- my notes -- */
-// callback
-/*fs.appendFile('greetings.txt', 'hallow world', function (err) {
-    if (err) {
-        console.log('error');        
-    }
-} )
-*/
-
-//async
-// fs.appendFileSync('greetings.txt', `hallo ${user.username}!, you are ${notes.age}`);
-// notes.addNote('poet');
+var filteredArray = _.uniq(['this', 'more', 'that', 'and', 'this', 1, 1])
+console.log(filteredArray)
