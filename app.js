@@ -1,5 +1,3 @@
-console.log('starting app.js...')
-
 const fs = require('fs')
 const _ = require('lodash')
 const yargs = require('yargs')
@@ -17,7 +15,10 @@ if (command === 'add') {
   console.log(message)
 } else if (command === 'list') {
   var allNotes = notes.getAll()
-  console.log(`Your notes: ${allNotes}`)
+  console.log(`Printing ${allNotes.length} note(s)`)
+  console.log(`Note retrieved:`) 
+  allNotes.forEach(n => 
+    console.log(`${notes.logNote(n)}`)); 
 } else if (command === 'read') {
   var retrievedNote = notes.getNote(argv.title)
   var message = retrievedNote

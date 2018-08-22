@@ -1,4 +1,3 @@
-console.log('starting notes.js...')
 const fs = require('fs')
 const _ = require('lodash')
 
@@ -48,7 +47,7 @@ var removeNote = title => {
   return notes.length !== filteredNotes.length
 }
 
-var logNote = note => `-- \n Title: ${note.title} \n Body: ${note.body}`
+var logNote = (note) => `-- \n Title: ${note.title} \n Body: ${note.body}`
 
 module.exports = {
   addNote,
