@@ -3,8 +3,22 @@ const _ = require('lodash')
 const yargs = require('yargs')
 
 const notes = require('./notes.js')
-
-var argv = yargs.argv
+var titleOption = {
+  describe: 'Title of note',
+  demand: true,
+  alias: 't'
+}
+var bodyOption = {
+  describe: 'Body of note',
+  demand: true,
+  alias: 'b'
+}
+var argv = yargs
+  .command('add', 'Add a note', { title: titleOption, body: bodyOption })
+  .command('list', 'List notes')
+  .command('read', 'Read a note', { title: titleOption })
+  .command('remove', 'Remove a note', { title: titleOption })
+  .help().argv
 var command = argv._[0]
 
 if (command === 'add') {
@@ -16,9 +30,8 @@ if (command === 'add') {
 } else if (command === 'list') {
   var allNotes = notes.getAll()
   console.log(`Printing ${allNotes.length} note(s)`)
-  console.log(`Note retrieved:`) 
-  allNotes.forEach(n => 
-    console.log(`${notes.logNote(n)}`)); 
+  console.log(`Note retrieved:`)
+  allNotes.forEach(n => console.log(`${notes.logNote(n)}`))
 } else if (command === 'read') {
   var retrievedNote = notes.getNote(argv.title)
   var message = retrievedNote
@@ -32,4 +45,3 @@ if (command === 'add') {
     : `No stress! You don't have that note`
   console.log(message)
 } else console.log('Command not recognised')
-
