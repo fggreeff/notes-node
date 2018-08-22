@@ -10,7 +10,9 @@ var argv = yargs.argv
 var command = argv._[0]
 
 if (command === 'add') {
-  notes.addNote(argv.title, argv.body)
+  var myNotes = notes.addNote(argv.title, argv.body)
+  if (myNotes) console.log(`Notes added: -- \n Title: ${myNotes.title} \n Body: ${myNotes.body}`)
+  else console.log(`No stress! You already have that note`)
 } else if (command === 'list') notes.getAll()
 else if (command === 'read') notes.getNote(argv.title)
 else if (command === 'remove') notes.removeNote(argv.title)
