@@ -32,13 +32,13 @@ var addNote = (title, body) => {
 }
 
 var getAll = () => {
-  var notesString = fs.readFileSync('./note-data.json')
-  var notesObj = JSON.parse(notes)
-  console.log(`Getting all notes... ${notesObj}`)
+  return fetchNotes()
 }
 
 var getNote = title => {
-  console.log(`Get note ${title}`)
+  var notes = fetchNotes()
+  var filteredNote = notes.filter(n => n.title === title)
+  return filteredNote[0]
 }
 
 var removeNote = title => {
@@ -48,9 +48,12 @@ var removeNote = title => {
   return notes.length !== filteredNotes.length
 }
 
+var logNote = note => `-- \n Title: ${note.title} \n Body: ${note.body}`
+
 module.exports = {
   addNote,
   getAll,
   getNote,
-  removeNote
+  removeNote,
+  logNote
 }
