@@ -30,7 +30,7 @@ Commands
 Example:
 
 - Add a note
-  node app.js add -t 'TitleExample' -b 'Example of note body'
+  `node app.js add -t 'TitleExample' -b 'Example of note body'`
 
 ## Source
 
